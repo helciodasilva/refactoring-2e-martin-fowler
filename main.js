@@ -37,11 +37,11 @@ function totalAmount() {
 }
 
 function totalVolumeCredits() {
-    let volumeCredits = 0;
+    let result = 0;
     for (let perf of invoice.performances) {
-        volumeCredits += volumeCreditsFor(perf);
+        result += resultFor(perf);
     }
-    return volumeCredits;
+    return result;
 }
 
 function amountFor(aPerformance) {
