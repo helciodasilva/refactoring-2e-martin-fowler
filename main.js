@@ -17,9 +17,9 @@ function usd(aNumber) {
         }).format(aNumber);
 }
 
-function renderPlainText(data, invoice, plays) {
+function renderPlainText(data, invoice) {
     let result = `Statement for ${data.customer}\n`;
-    for (let perf of invoice.performances) {
+    for (let perf of data.performances) {
         result += ` ${playFor(perf).name}: ${usd(amountFor(perf) / 100)} (${perf.audience} seats)\n`;
     }
 
@@ -31,7 +31,8 @@ function renderPlainText(data, invoice, plays) {
 function statement(invoice, plays) {
     const statementData = {};
     statementData.customer = invoice.customer;
-    return renderPlainText(statementData, invoice, plays);
+    statementData.performances = invoice.performances;
+    return renderPlainText(statementData, plays);
 }
 
 function totalAmount() {
